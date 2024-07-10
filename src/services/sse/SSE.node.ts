@@ -1,4 +1,4 @@
-import { Service, ServiceMessage, ServiceOptions } from "graphscript-core";
+import { Service, ServiceMessage, ServiceOptions } from "../../graphscript-core/index";
 import {createSession, createChannel, Session, Channel} from 'better-sse'; //third party lib. SSEs really just push notifications to an http endpoint but it's minimal overhead
 import http from 'http'
 import https from 'https'

@@ -1,8 +1,8 @@
-import { Service, ServiceMessage, ServiceOptions } from "graphscript-core";
+import { Service, ServiceMessage, ServiceOptions } from "../../graphscript-core/index";
 import WebSocket, { PerMessageDeflateOptions, WebSocketServer } from 'ws'; //third party lib. //createWebSocketStream <-- use this for cross-node instance communication
 import http from 'http'
 import https from 'https'
-import { GraphNodeProperties } from "graphscript-core";
+import { GraphNodeProperties } from "../../graphscript-core/index";
 //import { GraphNode } from "../Graph";
 
 export type SocketServerProps = {

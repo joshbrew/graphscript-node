@@ -1,7 +1,7 @@
 //for running parallel processes (with their own memory, as opposed to workers which share memory) in node.js
 import {ChildProcess, fork, Serializable, spawn} from 'child_process'
-import { Service, ServiceMessage, ServiceOptions } from 'graphscript-core';
-import { Graph, GraphNode, GraphNodeProperties } from 'graphscript-core';
+import { Service, ServiceMessage, ServiceOptions } from '../../graphscript-core/index';
+import { Graph, GraphNode, GraphNodeProperties } from '../../graphscript-core/index';
 import path from 'path';
 
 //enable message passing between child processes.

@@ -1,10 +1,7 @@
-/// <reference types="node" />
-/// <reference types="node" />
-/// <reference types="node" />
-import { Service, ServiceMessage, ServiceOptions } from "graphscript-core";
+import { Service, ServiceMessage, ServiceOptions } from "../../graphscript-core/index";
+import { GraphNode, GraphNodeProperties } from "../../graphscript-core/index";
 import * as http from 'http';
 import * as https from 'https';
-import { GraphNode, GraphNodeProperties } from "graphscript-core";
 export * from './boilerplate/index';
 export type ServerProps = {
     host: string;
@@ -69,7 +66,7 @@ export declare class HTTPbackend extends Service {
         [key: string]: string;
     };
     constructor(options?: ServiceOptions, settings?: ServerProps);
-    onStarted: (protocol: 'http' | 'https' | string, host: string, port: number) => void;
+    onStarted: (protocol: "http" | "https" | string, host: string, port: number) => void;
     setupServer: (options?: ServerProps, requestListener?: http.RequestListener, onStarted?: () => void) => void;
     open: (options?: ServerProps, requestListener?: http.RequestListener, onStarted?: () => void) => void;
     setupHTTPserver: (options?: (ServerProps & {
@@ -78,15 +75,15 @@ export declare class HTTPbackend extends Service {
         passphrase?: string;
     }), requestListener?: http.RequestListener, onStarted?: () => void) => Promise<ServerInfo>;
     transmit: (message: any | ServiceMessage, options: string | {
-        protocol: 'http' | 'https' | string;
+        protocol: "http" | "https" | string;
         host: string;
         port: number;
         method: string;
         path?: string;
         headers?: {
             [key: string]: any;
-            'Content-Type'?: string;
-            'Content-Length'?: number;
+            "Content-Type"?: string;
+            "Content-Length"?: number;
         };
     }, ondata?: (chunk: any) => void, onend?: () => void) => Promise<Buffer> | http.ClientRequest;
     withResult: (response: http.ServerResponse, result: any, message: {
@@ -122,8 +119,8 @@ export declare class HTTPbackend extends Service {
     responsePromiseHandler: (resolve: any, reject: any, message: any, request: http.IncomingMessage, response: http.ServerResponse, method: string, served: ServerInfo) => void;
     request: (options: ReqOptions | any, send?: any, ondata?: (chunk: any) => void, onend?: () => void) => http.ClientRequest;
     POST: (url: string | URL, data: any, headers?: {
-        'Content-Type'?: string;
-        'Content-Length'?: number;
+        "Content-Type"?: string;
+        "Content-Length"?: number;
         [key: string]: any;
     }) => http.ClientRequest;
     GET: (url: string | URL | http.RequestOptions) => Promise<Buffer>;

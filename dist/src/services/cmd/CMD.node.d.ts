@@ -1,8 +1,6 @@
-/// <reference types="node" />
-/// <reference types="node" />
 import { ChildProcess, Serializable } from 'child_process';
-import { Service, ServiceMessage, ServiceOptions } from 'graphscript-core';
-import { Graph, GraphNode, GraphNodeProperties } from 'graphscript-core';
+import { Service, ServiceMessage, ServiceOptions } from '../../graphscript-core/index';
+import { Graph, GraphNode, GraphNodeProperties } from '../../graphscript-core/index';
 export type CMDRoute = {
     command: string | ChildProcess;
     args?: string[];

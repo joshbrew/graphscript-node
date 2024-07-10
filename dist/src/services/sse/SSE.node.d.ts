@@ -1,7 +1,4 @@
-/// <reference types="node" />
-/// <reference types="node" />
-/// <reference types="node" />
-import { Service, ServiceMessage, ServiceOptions } from "graphscript-core";
+import { Service, ServiceMessage, ServiceOptions } from "../../graphscript-core/index";
 import { Session, Channel } from 'better-sse';
 import http from 'http';
 import https from 'https';

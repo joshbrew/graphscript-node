@@ -1,6 +1,5 @@
-
-export * from 'graphscript-core' //for a nodejs-specific distribution though the base library will work cross platform
-export * from 'graphscript-router/index'
+export * as core from './src/graphscript-core/index'
+export * as router from './src/graphscript-router/index'
 
 export * from './src/services/http/HTTP.node'
 

@@ -1,9 +1,9 @@
-import { Service, ServiceMessage, ServiceOptions } from "graphscript-core";
+import { Service, ServiceMessage, ServiceOptions } from "../../graphscript-core/index";
+import { GraphNode, GraphNodeProperties } from "../../graphscript-core/index";
 import * as http from 'http'
 import * as https from 'https'
 import * as fs from 'fs'
 import * as path from 'path'
-import { GraphNode, GraphNodeProperties } from "graphscript-core";
 import { defaultManifest, defaultServiceWorker } from "./boilerplate/index";
 
 export * from './boilerplate/index'
