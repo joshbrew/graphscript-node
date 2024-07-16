@@ -64,6 +64,7 @@ export type SharedSessionProps = {
         users?: {
             [key: string]: boolean;
         };
+        maxUsers?: number;
         host?: string;
         hostprops?: {
             [key: string]: boolean;

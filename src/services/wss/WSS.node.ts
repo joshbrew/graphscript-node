@@ -12,7 +12,7 @@ export type SocketServerProps = {
     noServer?:boolean,
     host?:'localhost'|'127.0.0.1'|string, //for matching upgrade urls
     perMessageDeflate?:PerMessageDeflateOptions,
-    onmessage?:(data:any, ws:WebSocket, serverinfo:SocketServerInfo)=>void,
+    onmessage?:(data:string | ArrayBufferLike | Blob | ArrayBufferView | Buffer[], ws:WebSocket,wsinfo:SocketProps)=>void, //apply a generic onmessage to all socket connections?
     onclose?:(wss:WebSocketServer, serverinfo:SocketServerInfo)=>void,
     onconnection?:(ws:WebSocket,request:http.IncomingMessage, serverinfo:SocketServerInfo, clientId:string)=>void,
     onconnectionclosed?:(code:number,reason:Buffer,ws:WebSocket, serverinfo:SocketServerInfo, clientId:string)=>void,
@@ -146,18 +146,18 @@ export class WSSbackend extends Service {
             ...options
         } as SocketServerInfo;
 
-        if(!options.onmessage) options.onmessage = (data) => {  //default onmessage
-            if(data instanceof Buffer) data = data.toString();
+        // if(!options.onmessage) options.onmessage = (data) => {  //default onmessage
+        //     if(data instanceof Buffer) data = data.toString();
 
-            if(options.debug) {
-                console.log(data);
-            }
-            //console.log(data);
-            const result = this.receive(data, wss, this.servers[address]); 
-            //console.log(result)
-            if(options.keepState) this.setState({[address]:result}); 
+        //     if(options.debug) {
+        //         console.log(data);
+        //     }
+        //     //console.log(data);
+        //     const result = this.receive(data, wss, this.servers[address]); 
+        //     //console.log(result)
+        //     if(options.keepState) this.setState({[address]:result}); 
 
-        }
+        // }
 
         wss.addListener('connection',(ws,request) => {
             if(this.debug) console.log(`New socket connection on ${address}`);
@@ -177,7 +177,8 @@ export class WSSbackend extends Service {
                         (this.servers[address] as any).onconnectionclosed(code, reason, ws, this.servers[address], clientId);
 
                     delete this.servers[address].clients[clientId]; //delete by default onclose (memory saving)
-                }
+                },
+                onmessage:options.onmessage //can override base callback
             }); //add send/receive etc functionality
 
 
@@ -193,7 +194,7 @@ export class WSSbackend extends Service {
 
         wss.on('error',(err) => {
             if(this.debug) console.log("Socket Error:",err);
-            if(this.servers[address].onerror) (this.servers[address] as any).onerror(err, wss, this.servers[address]);   
+            if(this.servers[address]?.onerror) (this.servers[address] as any).onerror(err, wss, this.servers[address]);   
             else console.error(err);
         })
 
@@ -229,7 +230,7 @@ export class WSSbackend extends Service {
 
         wss.addListener('close',()=> {
             if(server) server.removeListener('upgrade',onUpgrade);
-            if((this.servers[address] as any).onclose) (this.servers[address] as any).onclose(wss, this.servers[address]);
+            if((this.servers[address] as any)?.onclose) (this.servers[address] as any).onclose(wss, this.servers[address]);
             else console.log(`wss closed: ${address}`);
 
             delete this.servers[address];
@@ -373,7 +374,7 @@ export class WSSbackend extends Service {
                             //console.log(message)
                             data = JSON.parse(data); //parse stringified objects
 
-                            if(data.route === 'setId') {
+                            if(data.route === 'setId') { //should be the first thing echoed
                                 this.sockets[address]._id = data.args;
                                 socket.removeEventListener(
                                     'message',
@@ -390,6 +391,9 @@ export class WSSbackend extends Service {
                                         this.setState({[address]:data});
                                     }
                                 }); //clear this extra logic after id is set
+                            } else {
+                                this.receive(data,socket,this.sockets[address]); 
+                                this.setState({[address]:data});
                             }
                         }
                     } 
@@ -417,7 +421,7 @@ export class WSSbackend extends Service {
 
             
         socket.on('error',(er)=>{
-            if(this.sockets[address].onerror) (this.sockets[address] as any).onerror(er,socket,this.sockets[address]);
+            if(this.sockets[address]?.onerror) (this.sockets[address] as any).onerror(er,socket,this.sockets[address]);
         });
 
         let send = (message:any) => {

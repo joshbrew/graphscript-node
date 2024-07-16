@@ -410,10 +410,10 @@ export class HTTPbackend extends Service {
         }  
 
         let headers = {}; 
-        if((served as any).pages._all.headers)
+        if((served as any).pages._all?.headers)
             Object.assign(headers,(served as any).pages._all.headers);
 
-        if((served as any).pages[url].headers)
+        if((served as any).pages[url]?.headers)
             Object.assign(headers,(served as any).pages[url].headers);
 
         

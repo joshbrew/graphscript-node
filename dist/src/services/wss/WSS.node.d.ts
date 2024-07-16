@@ -10,7 +10,7 @@ export type SocketServerProps = {
     noServer?: boolean;
     host?: 'localhost' | '127.0.0.1' | string;
     perMessageDeflate?: PerMessageDeflateOptions;
-    onmessage?: (data: any, ws: WebSocket, serverinfo: SocketServerInfo) => void;
+    onmessage?: (data: string | ArrayBufferLike | Blob | ArrayBufferView | Buffer[], ws: WebSocket, wsinfo: SocketProps) => void;
     onclose?: (wss: WebSocketServer, serverinfo: SocketServerInfo) => void;
     onconnection?: (ws: WebSocket, request: http.IncomingMessage, serverinfo: SocketServerInfo, clientId: string) => void;
     onconnectionclosed?: (code: number, reason: Buffer, ws: WebSocket, serverinfo: SocketServerInfo, clientId: string) => void;
