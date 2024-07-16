@@ -1,10 +1,10 @@
-import { ObjectId } from "./datastructures/bson.cjs";
+import { ObjectId } from "./datastructures/objectid.js";
 import { AuthorizationStruct, GroupStruct, ProfileStruct } from "./datastructures/types";
 import { TimeSpecifier } from './genTimestamps';
 import { Service } from "../graphscript-core/index";
 import { User } from '../graphscript-router/index';
 export declare const toObjectId: (str: any) => any;
-export declare const getStringId: (mongoid: string | ObjectId) => any;
+export declare const getStringId: (mongoid: string | ObjectId) => string;
 type CollectionsType = {
     [x: string]: CollectionType;
 };
@@ -68,7 +68,7 @@ export declare class StructBackend extends Service {
         parentUserId: string;
         parent: {
             structType: any;
-            _id: any;
+            _id: string;
         };
     };
     checkToNotify: (user: Partial<ProfileStruct>, structs?: any[], mode?: string) => Promise<boolean>;
@@ -96,8 +96,8 @@ export declare class StructBackend extends Service {
     getMongoData: (user: Partial<ProfileStruct>, collection: string | undefined, ownerId: string | undefined, dict?: any | undefined, limit?: number, skip?: number, token?: string) => Promise<any[]>;
     getAllUserMongoData: (user: Partial<ProfileStruct>, ownerId: any, excluded?: any[], timeRange?: [number | TimeSpecifier, number | TimeSpecifier], token?: string) => Promise<any[]>;
     getMongoDataByRefs: (user: Partial<ProfileStruct>, structRefs?: any[], token?: string) => Promise<any[]>;
-    getMongoAuthorizations: (user: Partial<ProfileStruct>, ownerId?: any, authId?: string, token?: string) => Promise<AuthorizationStruct[]>;
-    getMongoGroups: (user: Partial<ProfileStruct>, userId?: any, groupId?: string) => Promise<GroupStruct[]>;
+    getMongoAuthorizations: (user: Partial<ProfileStruct>, ownerId?: string, authId?: string, token?: string) => Promise<AuthorizationStruct[]>;
+    getMongoGroups: (user: Partial<ProfileStruct>, userId?: string, groupId?: string) => Promise<GroupStruct[]>;
     deleteMongoData: (user: Partial<ProfileStruct>, structRefs?: any[], token?: string) => Promise<boolean>;
     deleteMongoUser: (user: Partial<ProfileStruct>, userId: any, deleteData?: boolean, token?: string) => Promise<boolean>;
     deleteMongoGroup: (user: Partial<ProfileStruct>, groupId: any, token?: string) => Promise<boolean>;

@@ -1,4 +1,4 @@
-import { ObjectId } from "./datastructures/bson.cjs"
+import { ObjectId } from "./datastructures/objectid.js"
 import { AuthorizationStruct, CommentStruct, GroupStruct, ProfileStruct } from "./datastructures/types";
 import { genTimestampFromString, TimeSpecifier } from './genTimestamps'
 import { Service } from "../graphscript-core/index";
