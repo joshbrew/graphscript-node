@@ -1,9 +1,9 @@
 import { DataTablet } from './datastructures/index';
 import { Data, ProfileStruct, AuthorizationStruct, GroupStruct, DataStruct, EventStruct, ChatroomStruct, CommentStruct, Struct, NotificationStruct } from './datastructures/types';
 import { TimeSpecifier } from './genTimestamps';
-import { Service } from "../graphscript-core/index";
-import { User } from '../graphscript-router/index';
-import { GraphNodeProperties } from '../graphscript-core/index';
+import { Service } from 'graphscript-core';
+import { User } from 'graphscript-router';
+import { GraphNodeProperties } from 'graphscript-core';
 export declare const randomId: (prefix?: any) => string;
 export declare const pseudoObjectId: (m?: Math, d?: DateConstructor, h?: number, s?: (s: any) => string) => string;
 export type StructFrontendProps = {

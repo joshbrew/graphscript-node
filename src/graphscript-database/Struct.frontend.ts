@@ -1,9 +1,9 @@
 import { DataTablet, DS } from './datastructures/index'
 import { Data, ProfileStruct, AuthorizationStruct, GroupStruct, DataStruct, EventStruct, ChatroomStruct, CommentStruct, Struct, NotificationStruct } from './datastructures/types';
 import { genTimestampFromString, TimeSpecifier } from './genTimestamps'
-import { Service } from "../graphscript-core/index";
-import { User } from '../graphscript-router/index';
-import { GraphNodeProperties } from '../graphscript-core/index';
+import { Service } from 'graphscript-core';
+import { User } from 'graphscript-router';
+import { GraphNodeProperties } from 'graphscript-core';
 
 export const randomId = (prefix?) => ((prefix) ? `${prefix}` : '')  + Math.floor(1000000000000000*Math.random())
 
@@ -46,14 +46,14 @@ export class StructFrontend extends Service {
     }
 
     getToken(user:Partial<ProfileStruct>) {
-        if (this.useRefreshTokens) return user.refreshToken;
-        else return user.accessToken;
+        if(this.useAccessTokens) return user.accessToken;
+        else if (this.useRefreshTokens) return user.refreshToken;
     }
 
     //TODO: make this able to be awaited to return the currentUser
     //uses a bunch of the functions below to set up a user and get their data w/ some cross checking for consistent profiles
     setupUser = async(userinfo:Partial<User>, callback=(currentUser)=>{}) => {
-
+        
         if(!userinfo) {
             console.error('must provide a minimum info object! e.g. {_id:"abc123"}');
             callback(undefined);
@@ -338,6 +338,7 @@ export class StructFrontend extends Service {
 
     //info can be email, id, username, or name. Returns their profile and authorizations
     getUser = async (info:string|number='', basicInfo?:boolean, callback=this.baseServerCallback) => {
+        console.log(this.currentUser);
         if(this.currentUser?.request) {
             let res = (await this.currentUser.request({route:'getUser', args:[this.currentUser._id, info, basicInfo, this.getToken(this.currentUser)]}));
             callback(res);
@@ -467,7 +468,6 @@ export class StructFrontend extends Service {
     
     //sets the user profile data on the server
     setUser = async (userStruct:ProfileStruct,callback=this.baseServerCallback) => {
-        console.log(this.currentUser);
         if(userStruct && this.currentUser?.request) {
             let res = (await this.currentUser.request({route:'setUser', args:[this.currentUser._id, this.stripStruct(userStruct), this.getToken(this.currentUser)]}))
             if(typeof callback === 'function') callback(res)

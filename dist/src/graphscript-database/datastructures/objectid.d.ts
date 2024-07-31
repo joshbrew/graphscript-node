@@ -25,8 +25,7 @@ export class ObjectId {
     generate: (time?: number) => string;
 }
 export namespace ObjectId {
-    export let index: number;
-    export { ObjectId as default };
+    let index: number;
     /**
      * Creates an ObjectId from a second based number, with the rest of the ObjectId zeroed out. Used for comparisons or sorting the ObjectId.
      *
@@ -34,7 +33,7 @@ export namespace ObjectId {
      * @return {ObjectId} return the created ObjectId
      * @api public
      */
-    export function createFromTime(time: number): ObjectId;
+    function createFromTime(time: number): ObjectId;
     /**
      * Creates an ObjectId from a hex string representation of an ObjectId.
      *
@@ -42,7 +41,7 @@ export namespace ObjectId {
      * @return {ObjectId} return the created ObjectId
      * @api public
      */
-    export function createFromHexString(hexString: string): ObjectId;
+    function createFromHexString(hexString: string): ObjectId;
     /**
      * Checks if a value is a valid bson ObjectId
      *
@@ -53,5 +52,6 @@ export namespace ObjectId {
      * THE NATIVE DOCUMENTATION ISN'T CLEAR ON THIS GUY!
      * http://mongodb.github.io/node-mongodb-native/api-bson-generated/objectid.html#objectid-isvalid
      */
-    export function isValid(id: any): boolean;
+    function isValid(id: any): boolean;
 }
+export default ObjectId;

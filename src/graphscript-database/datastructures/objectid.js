@@ -82,8 +82,8 @@ export function ObjectId(id) {
     );
   }
 }
-module.exports = ObjectId;
-ObjectId.default = ObjectId;
+
+export default ObjectId;
 
 /**
  * Creates an ObjectId from a second based number, with the rest of the ObjectId zeroed out. Used for comparisons or sorting the ObjectId.
