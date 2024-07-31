@@ -1,5 +1,5 @@
-import { Graph, GraphNode } from "../../../../graphscript-core/index"
-import { Service, ServiceMessage, ServiceOptions } from "../../../../graphscript-core/index"
+import { Graph, GraphNode } from "graphscript-core"
+import { Service, ServiceMessage, ServiceOptions } from "graphscript-core"
 
 /*
 Goals of router:
@@ -10,11 +10,11 @@ relay subscriptions from one graph to another,
 Now use that to sync subscriptions
 
 Backend Graph
-      |
-    Router--
+     |
+    Router-.
      |      \
-Frontend 1   Frontend 2
-
+Frontend 1  Frontend 2
+(e.g user 1 and user 2's devices) 
 */
 
 
