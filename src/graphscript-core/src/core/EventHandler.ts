@@ -1,6 +1,5 @@
 //mini state event handler for arbitrary data event callback handling
 
-//a graph representing a callstack of nodes which can be arranged arbitrarily with forward and backprop or propagation to wherever
 export class EventHandler {
 
     data={} as {[key:string]:any}

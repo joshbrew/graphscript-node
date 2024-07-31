@@ -4,9 +4,9 @@ export declare class EventHandler {
     };
     triggers: {
         [key: string]: {
-            [key: string]: any;
             sub: number;
             onchange: Function;
+            [key: string]: any;
         }[];
     };
     ctr: number;
