@@ -1,9 +1,9 @@
 import { DataTablet, DS } from './datastructures/index'
 import { Data, ProfileStruct, AuthorizationStruct, GroupStruct, DataStruct, EventStruct, ChatroomStruct, CommentStruct, Struct, NotificationStruct } from './datastructures/types';
 import { genTimestampFromString, TimeSpecifier } from './genTimestamps'
-import { Service } from 'graphscript-core';
-import { User } from 'graphscript-router';
-import { GraphNodeProperties } from 'graphscript-core';
+import { Service } from "../graphscript-core/index";
+import { User } from "../graphscript-router/index";
+import { GraphNodeProperties } from "../graphscript-core/index";
 
 export const randomId = (prefix?) => ((prefix) ? `${prefix}` : '')  + Math.floor(1000000000000000*Math.random())
 

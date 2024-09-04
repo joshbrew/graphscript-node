@@ -1,5 +1,5 @@
-import { Graph, GraphNode } from "graphscript-core";
-import { Service, ServiceOptions } from "graphscript-core";
+import { Graph, GraphNode } from "../../../../graphscript-core/index";
+import { Service, ServiceOptions } from "../../../../graphscript-core/index";
 export type User = {
     _id: string;
     send: (...args: any[]) => any;

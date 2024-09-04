@@ -1,7 +1,7 @@
 import { ObjectId } from "./datastructures/bson.cjs"
 import { AuthorizationStruct, CommentStruct, GroupStruct, ProfileStruct } from "./datastructures/types";
 import { genTimestampFromString, TimeSpecifier } from './genTimestamps'
-import { Service } from "graphscript-core";
+import { Service } from "../../../../graphscript-core/index";
 import { User } from '../router/Router';
 import { DS } from "./datastructures/index.js";
 

@@ -1,4 +1,4 @@
-import { Service, ServiceOptions } from "graphscript-core";
+import { Service, ServiceOptions } from "../../../../graphscript-core/index";
 import { User } from "../router/Router";
 import { SessionManager, SessionRules } from "./sessions";
 import { DelayedGetterRules } from "./buffers";

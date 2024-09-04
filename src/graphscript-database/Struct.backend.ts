@@ -1,8 +1,8 @@
 import { ObjectId } from "./datastructures/objectid"
 import { AuthorizationStruct, CommentStruct, GroupStruct, ProfileStruct } from "./datastructures/types";
 import { genTimestampFromString, TimeSpecifier } from './genTimestamps'
-import { Service } from "graphscript-core";
-import { User } from 'graphscript-router';
+import { Service } from "../graphscript-core/index";
+import { User } from '../graphscript-router/index';
 import { DS } from "./datastructures/index.js";
 
 //todo:

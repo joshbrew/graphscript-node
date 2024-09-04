@@ -1,4 +1,4 @@
-import { Service, ServiceMessage, ServiceOptions } from "graphscript-core";
+import { Service, ServiceMessage, ServiceOptions } from "../../../../graphscript-core/index";
 export declare class E2EEService extends Service {
     name: string;
     keys: {

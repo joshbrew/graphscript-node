@@ -1,8 +1,8 @@
 import { ObjectId } from "./datastructures/objectid";
 import { AuthorizationStruct, GroupStruct, ProfileStruct } from "./datastructures/types";
 import { TimeSpecifier } from './genTimestamps';
-import { Service } from "graphscript-core";
-import { User } from 'graphscript-router';
+import { Service } from "../graphscript-core/index";
+import { User } from '../graphscript-router/index';
 export declare const toObjectId: (str: any) => any;
 export declare const getStringId: (mongoid: string | ObjectId) => string;
 type CollectionsType = {

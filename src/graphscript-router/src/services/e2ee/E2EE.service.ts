@@ -1,7 +1,7 @@
 //End to end encryption using sjcl and keygen stuff, should involve webworkers 
 
-import { GraphNode } from "graphscript-core";
-import { Service, ServiceMessage, ServiceOptions } from "graphscript-core";
+import { GraphNode } from "../../../../graphscript-core/index";
+import { Service, ServiceMessage, ServiceOptions } from "../../../../graphscript-core/index";
 import sjcl from "./sjcl"; //stanford javascript cryptography library, super minimal!
 
 //End to end encryption service, this will redirect transmits/receives through an encoder/decoder framework

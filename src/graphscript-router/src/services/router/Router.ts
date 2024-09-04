@@ -1,5 +1,5 @@
-import { Graph, GraphNode } from "graphscript-core"
-import { Service, ServiceMessage, ServiceOptions } from "graphscript-core"
+import { Graph, GraphNode } from "../../../../graphscript-core/index"
+import { Service, ServiceMessage, ServiceOptions } from "../../../../graphscript-core/index"
 
 /*
 Goals of router:
